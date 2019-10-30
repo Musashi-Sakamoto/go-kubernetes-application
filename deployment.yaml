@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-tu-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: go-tu-deployment
+  template:
+    metadata:
+      labels:
+        app: go-tu-deployment
+    spec:
+      containers:
+      - name: go-tu-deployment-application
+        image: musashisakamoto/go-tu:1.0.0
+        env:
+          - name: DB_URL
+            valueFrom:
+              configMapKeyRef:
+                name: go-tu-configmap
+                key: DB_URL
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080

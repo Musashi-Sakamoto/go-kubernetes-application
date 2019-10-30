@@ -1,0 +1,6 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: go-tu-configmap
+data:
+  DB_URL: "<user>:<password>@tcp(<host>)/<db>?charset=utf8&parseTime=True&loc=Local"
